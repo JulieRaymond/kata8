@@ -1,5 +1,12 @@
 <h1>{{ title }}</h1>
 
+
+<select (change)="filterByCategory($event)">
+  <option value="">Toutes les catégories</option>
+  <option *ngFor="let category of uniqueCategories()" [value]="category">{{ category }}</option>
+</select>
+
+
 <ul>
   <li *ngFor="let product of products">
     {{ product.name }} - {{ product.category }} - {{ product.price }}€ - Note : {{ product.rating }}
@@ -7,7 +14,5 @@
 </ul>
 
 <button (click)="sortByRating()">Trier par note moyenne</button>
-
-<button (click)="filterByCategory('Électronique')">Filtrer par catégorie 'Électronique'</button>
 
 <app-meteo></app-meteo>

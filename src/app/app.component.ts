@@ -29,13 +29,28 @@ export class AppComponent {
     {id: 5, name: "Montre Connectée", category: "Électronique", price: 249.99, rating: 4.4},
   ];
 
-  // Trier par note moyenne
+  allProducts: Array<Product>;
+
+  constructor() {
+    this.allProducts = [...this.products];
+  }
+
   sortByRating() {
     this.products = this.products.sort((a, b) => b.rating - a.rating);
   }
 
-  // Filtrer par catégorie
-  filterByCategory(categoryName: string) {
-    this.products = this.products.filter(product => product.category === categoryName);
+  filterByCategory(event: any) {
+    const categoryName = event.target.value;
+    if (categoryName === '') {
+      this.products = [...this.allProducts];
+    } else {
+      this.products = this.allProducts.filter(product => product.category === categoryName);
+    }
+  }
+
+  uniqueCategories(): Array<string> {
+    const categoriesSet = new Set<string>();
+    this.products.forEach(product => categoriesSet.add(product.category));
+    return Array.from(categoriesSet);
   }
 }
