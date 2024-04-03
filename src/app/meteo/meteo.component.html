@@ -1,0 +1,20 @@
+<h1>{{ title }}</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Ville</th>
+    <th>Année</th>
+    <th>Température moyenne (°C)</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let record of temperatureData">
+    <td>{{ record.city }}</td>
+    <td>{{ record.year }}</td>
+    <td>{{ record.avgTemperature }}</td>
+  </tr>
+  </tbody>
+</table>
+
+<p *ngIf="getCityWithHighestAvgTemperature()">La ville avec la température moyenne la plus élevée est : {{ getCityWithHighestAvgTemperature() }}</p>
